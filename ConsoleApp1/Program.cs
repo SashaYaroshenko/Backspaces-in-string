@@ -18,6 +18,7 @@ namespace ConsoleApp1
     {
         public static string CleanString(string s)
         {
+            string result = ""; // for the difference between main and newBranch
             int countBackSp = s.Count(x => x == '#');
             int countLetter = s.Count(x => Char.IsLetter(x));
             if(String.IsNullOrEmpty(s))
