@@ -18,29 +18,24 @@ namespace ConsoleApp1
     {
         public static string CleanString(string s)
         {
-            int countBackSp = s.Count(x => x == '#');
-            int countLetter = s.Count(x => Char.IsLetter(x));
-            if(String.IsNullOrEmpty(s))
+            string result = "";
+            if (String.IsNullOrEmpty(s) != true)
             {
-                return "";
-            }
-            if(countBackSp > countLetter)
-            {
-                return "";
-            }
-            else
-            {
-                for(int i = 1; i < s.Length; i++)
+                result = s;
+                while (result.Contains("#") == true)
                 {
-                    if (s[i]=='#')
-                    { 
-                        s = s.Remove(i - 1, 2);
-                        i -= 2;
+                    for (int i = 0; i < result.Length - 1; i++)
+                    {
+                        if (result[i] != '#' && result[i+1]=='#')
+                        {
+                            result = result.Remove(i, 2);
+                            if (i != 0) i--;
+                        }
+                        result = result.TrimStart('#');
                     }
-                   
                 }
             }
-            return s;
+            return result;
         }
     }
 }
