@@ -19,15 +19,13 @@ namespace ConsoleApp1
     {
         public static string CleanString(string s)
         {
-            string result = s;
-
-            while (result.Contains("#") == true)
+            while (s.Contains("#") == true)
             {
-                result = Regex.Replace(result, @"(\A[#])|([^#]#)", "");
+                s = Regex.Replace(s, @"(\A[#])|([^#]#)", "");
             }
-
-            return result;
+            return s;
         }
     }
 }
+
 
