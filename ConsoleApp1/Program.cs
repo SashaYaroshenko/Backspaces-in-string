@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ConsoleApp1
@@ -10,7 +11,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Kata.CleanString("abc#d##c");
+            Kata.CleanString("abc####d##c#");
         }
     }
 
@@ -18,24 +19,15 @@ namespace ConsoleApp1
     {
         public static string CleanString(string s)
         {
-            string result = "";
-            if (String.IsNullOrEmpty(s) != true)
+            string result = s;
+
+            while (result.Contains("#") == true)
             {
-                result = s;
-                while (result.Contains("#") == true)
-                {
-                    for (int i = 0; i < result.Length - 1; i++)
-                    {
-                        if (result[i] != '#' && result[i+1]=='#')
-                        {
-                            result = result.Remove(i, 2);
-                            if (i != 0) i--;
-                        }
-                        result = result.TrimStart('#');
-                    }
-                }
+                result = Regex.Replace(result, @"(\A[#])|([^#]#)", "");
             }
+
             return result;
         }
     }
 }
+
