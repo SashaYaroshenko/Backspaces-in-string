@@ -10,7 +10,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Kata.CleanString("abc#d##c");
+            Kata.CleanString("#acd#d##c#");
         }
     }
 
@@ -18,7 +18,7 @@ namespace ConsoleApp1
     {
         public static string CleanString(string s)
         {
-            string result = ""; // for the difference between main and newBranch
+            
             int countBackSp = s.Count(x => x == '#');
             int countLetter = s.Count(x => Char.IsLetter(x));
             if(String.IsNullOrEmpty(s))
@@ -27,7 +27,9 @@ namespace ConsoleApp1
             }
             if(countBackSp > countLetter)
             {
-                return "";
+                int index = s.LastIndexOf('#');
+                string a = s.Substring(index).TrimStart('#');
+                return a;
             }
             else
             {
@@ -41,7 +43,7 @@ namespace ConsoleApp1
                    
                 }
             }
-            return s;
+            return s.TrimStart('#');
         }
     }
 }
